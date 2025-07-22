@@ -7,7 +7,7 @@ namespace EventManagementApi.Services
         Task<IEnumerable<Event>> GetAllAsync();
         Task<Event?> GetByIdAsync(int id);
         Task<Event> CreateAsync(Event ev);
-        Task<bool> UpdateAsync(int id, Event ev);
+        Task<bool> UpdateAsync(int id, Event ev);   
         Task<bool> DeleteAsync(int id);
     }
 }

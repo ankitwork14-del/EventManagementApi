@@ -7,7 +7,7 @@ using System;
 namespace EventManagementApi.Controllers
 {
     [Authorize]// only authorize pesson can access it
-    [ApiController] //
+    [ApiController] 
     [Route("api/[controller]")] //Defines the URL route for the controller
     public class EventsController : ControllerBase
     {
@@ -50,13 +50,13 @@ namespace EventManagementApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] Event ev)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid)//check for all the validation rules like given input should be followed predefined template.
             {
                 return BadRequest(ModelState);
             }
 
-            var updated = await _eventService.UpdateAsync(id, ev);
-            if (!updated) return NotFound(new { Message = "Event not found" });
+            var updated = await _eventService.UpdateAsync(id, ev); //_eventService.UpdateAsync(id, ev) calls service layer to update the event in the database.
+             if (!updated) return NotFound(new { Message = "Event not found" });
 
             return NoContent();
         }

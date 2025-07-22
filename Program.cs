@@ -1,6 +1,7 @@
 ﻿using EventManagementApi.Data;
 using EventManagementApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text; 
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add Controllers
 builder.Services.AddControllers();
 
-// Enable Swagger with JWT support
+// Enable Swagger with JWT support    
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -87,6 +88,10 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 var app = builder.Build();//Builder is like a blueprint to register all service like controllers,Jwt and DB
 
